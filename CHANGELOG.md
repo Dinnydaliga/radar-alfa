@@ -72,3 +72,10 @@ Este arquivo é a trilha cronológica do projeto. Toda alteração deve ter regi
 - **Issue/commit/evidência:**
 - **Testes e resultados:**
 - **Pendências e limitações:**
+
+## 2026-11-20 — Resumo Actions e testes (branch de trabalho)
+
+- **Ação:** classificação direta/indireta/descartada, contagem de duplicidades e resumo Markdown no GitHub Actions; testes simulados sem rede.
+- **Arquivos:** `scripts/pncp_piloto.py`, `.github/workflows/teste-pncp.yml`, `tests/test_pncp.py`, documentação.
+- **Validação:** alterações gravadas na branch `feature/pncp-actions-summary-tests`; execução de testes e consulta real ainda pendentes de confirmação no Actions.
+- **Limites:** uma página no piloto, sem agendamento, histórico ou envio comercial. `linkSistemaOrigem` não é necessariamente link oficial PNCP.
