@@ -2,6 +2,13 @@
 
 Este arquivo é a trilha cronológica do projeto. Toda alteração deve ter registro verificável, inclusive correções de documentação e configurações. Usar datas no formato AAAA-MM-DD.
 
+## 2026-11-20 — Código piloto PNCP (não ativado)
+
+- **Ação:** criar `scripts/pncp_piloto.py` com consulta a propostas abertas, classificação inicial e saída JSON local; atualizar documentação e checkpoints.
+- **Fonte:** Swagger oficial da API PNCP.
+- **Testes:** apenas inspeção documental; execução real e validação de resposta ainda pendentes.
+- **Pendências:** executar, validar filtros, dados e resultados antes de qualquer agendamento.
+
 ## 2026-11-20 — Cinco máquinas e opções de execução gratuita
 
 - **Ação:** criar `docs/MAQUINAS.md`; atualizar README, decisões D-007 e checkpoints CP-08.
