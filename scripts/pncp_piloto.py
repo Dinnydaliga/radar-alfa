@@ -16,8 +16,8 @@ UFS = "AC AL AP AM BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RS RO RR SC S
 DIRECT = re.compile(
     r"corrim[aã]o|guarda[ -]?corpo|gradil|serralheria|"
     r"estrutura[s]? met[aá]lica[s]?|passarela|"
-    r"\\binox\\b|a[cç]o inoxid[aá]vel|"
-    r"\\balum[ií]nio\\b|NBR.?9050|rota acess[ií]vel|"
+    r"\binox\b|a[cç]o inoxid[aá]vel|"
+    r"\balum[ií]nio\b|NBR.?9050|rota acess[ií]vel|"
     r"barreira met[aá]lica|defensa met[aá]lica|"
     r"guarda[ -]?rodas|escada met[aá]lica|"
     r"fechamento de sacada",
@@ -26,21 +26,21 @@ DIRECT = re.compile(
 # Obra identificada para prospeccao: exige acao de construcao/reforma,
 # e nao apenas a mencao a uma escola, hospital, engenharia ou material.
 INDIRECT = re.compile(
-    r"\\b(?:constru[cç][aã]o|reforma|amplia[cç][aã]o|"
+    r"\b(?:constru[cç][aã]o|reforma|amplia[cç][aã]o|"
     r"revitaliza[cç][aã]o|recupera[cç][aã]o|"
     r"reabilita[cç][aã]o|adequa[cç][aã]o|"
-    r"implanta[cç][aã]o|execu[cç][aã]o)\\b"
-    r".{0,100}\\b(?:obra[s]?|edifica[cç][aã]o|"
+    r"implanta[cç][aã]o|execu[cç][aã]o)\b"
+    r".{0,100}\b(?:obra[s]?|edifica[cç][aã]o|"
     r"pr[eé]dio|unidade[s]?|escola[s]?|hospital|"
     r"ponte[s]?|viaduto[s]?|pra[cç]a[s]?|"
-    r"instala[cç][oõ]es|infraestrutura)\\b|"
-    r"\\b(?:obra[s]?|edifica[cç][aã]o|"
-    r"ponte[s]?|viaduto[s]?|infraestrutura)\\b"
-    r".{0,100}\\b(?:constru[cç][aã]o|reforma|"
+    r"instala[cç][oõ]es|infraestrutura)\b|"
+    r"\b(?:obra[s]?|edifica[cç][aã]o|"
+    r"ponte[s]?|viaduto[s]?|infraestrutura)\b"
+    r".{0,100}\b(?:constru[cç][aã]o|reforma|"
     r"amplia[cç][aã]o|recupera[cç][aã]o|"
-    r"revitaliza[cç][aã]o|execu[cç][aã]o)\\b|"
-    r"\\b(?:contrata[cç][aã]o|execu[cç][aã]o)\\b"
-    r".{0,80}\\b(?:obra[s]?|servi[cç]os de engenharia)\\b",
+    r"revitaliza[cç][aã]o|execu[cç][aã]o)\b|"
+    r"\b(?:contrata[cç][aã]o|execu[cç][aã]o)\b"
+    r".{0,80}\b(?:obra[s]?|servi[cç]os de engenharia)\b",
     re.I,
 )
 # Evita que compras de rotina sejam classificadas como obras apenas por
