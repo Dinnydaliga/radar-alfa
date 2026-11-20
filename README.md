@@ -77,3 +77,7 @@ Diretriz informada pela responsável: o radar deve buscar também serviços de f
 ## Máquinas de captação e execução incremental
 
 Planejadas cinco frentes integradas: Radar de Obras, Caçador de Construtoras, Radar AVCB, Prospecção Comercial e Gestor de Leads. O objetivo é gerar clientes empresariais e contratos lucrativos; começar com piloto de construtoras de São Bernardo e um coletor oficial de obras, sem esperar pelo n8n. Consultar [docs/MAQUINAS.md](docs/MAQUINAS.md) para responsabilidades, prioridades, opções gratuitas e limites. **Nenhuma máquina está ativa.** Dados de leads e contatos não devem ser publicados no repositório público.
+
+## Piloto executável PNCP
+
+Arquivo: `scripts/pncp_piloto.py`. Executar manualmente com `python scripts/pncp_piloto.py --uf SP --paginas 2`. Consulta propostas com prazo aberto, filtra descrições e gera `resultado-pncp.json` local, sem enviar mensagens nem agendar. **Código ainda não executado nem validado contra resposta real da API.** Não publicar resultados com dados de contato no repositório público.
