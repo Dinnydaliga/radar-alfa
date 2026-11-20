@@ -89,3 +89,7 @@ Workflow manual: `.github/workflows/teste-pncp.yml`. No GitHub, abrir **Actions 
 ## Diagnóstico PNCP — 2026-11-20
 
 Três execuções manuais relatadas falharam em `Consultar PNCP` por `The read operation timed out` após 25 segundos; configuração e sintaxe passaram. O piloto agora limita o teste a **uma página**, tenta novamente uma vez em erros transitórios, registra tempo e tipo de erro e grava `resultado-pncp.json` mesmo se falhar. O workflow publica o artefato também em caso de falha. **Correção gravada, mas ainda não executada**; endpoint e disponibilidade da API permanecem sujeitos à validação real. Sem agendamento.
+
+## Resumo de execução em teste (branch de trabalho)
+
+Na branch `feature/pncp-actions-summary-tests`, o workflow manual foi adaptado para gerar resumo Markdown no painel da execução do GitHub Actions, com totais por classificação, duplicidades, erros e candidatos. O JSON continua como artefato temporário. A consulta continua limitada a uma página de 10 registros, sem agendamento. O link de origem pode apontar para sistema externo e não equivale a link oficial do PNCP. Os testes simulados são executados antes da consulta real; validação no Actions ainda pendente.
