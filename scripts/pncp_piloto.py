@@ -12,6 +12,7 @@ import urllib.request
 from datetime import date, timedelta
 
 BASE = "https://pncp.gov.br/api/consulta/v1/contratacoes/proposta"
+UFS = "AC AL AP AM BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RS RO RR SC SP SE TO".split()
 DIRECT = re.compile(r"corrim[aã]o|guarda[ -]?corpo|gradil|serralheria|estrutura[s]? met[aá]lica[s]?|passarela|acessibilidade|inox|a[cç]o inoxid[aá]vel|alum[ií]nio|NBR.?9050|rota acess[ií]vel|adequa[cç][aã]o", re.I)
 INDIRECT = re.compile(r"constru[cç][aã]o|reforma|amplia[cç][aã]o|obra[s]?|engenharia|hospital|escola|pr[eé]dio", re.I)
 
@@ -56,7 +57,7 @@ def summarize(result, destination):
         "# Radar Alfa — consulta PNCP",
         f"- Situação: **{result['status']}**",
         f"- UF: {result['uf']} | Consulta: {result['consulta_em']} | Prazo final pesquisado: {result['data_final_parametro']}",
-        "- Cobertura: **parcial / piloto limitado**; não representa todas as licitações de SP.",
+        "- Cobertura: **parcial / piloto limitado**; não garante cobertura completa do Brasil.",
         f"- Registros lidos: **{result['registros_lidos']}**; únicos: **{result['registros_unicos']}**; duplicados: **{result['duplicados']}**",
         f"- Diretas: **{counts['direta']}**; indiretas: **{counts['obra_para_prospeccao']}**; descartadas: **{counts['descartada']}**",
         f"- Páginas consultadas: **{result['paginas_consultadas']}**; erros: **{len(result['erros'])}**",
@@ -92,7 +93,7 @@ def print_console_report(result):
     print(f"Registros lidos: {result['registros_lidos']} | Únicos: {result['registros_unicos']} | Duplicados: {result['duplicados']}")
     print(f"Diretas: {counts['direta']} | Indiretas: {counts['obra_para_prospeccao']} | Descartadas: {counts['descartada']}")
     print(f"Páginas consultadas: {result['paginas_consultadas']} | Erros: {len(result['erros'])}")
-    print("Cobertura: piloto limitado; não representa todo o Estado de SP.")
+    print("Cobertura: piloto nacional com limite de paginas por UF.")
     for index, item in enumerate(result["candidatos"], 1):
         print(f"\\nOPORTUNIDADE {index} — {item['classificacao_preliminar']}")
         for label, key in [
@@ -112,14 +113,14 @@ def print_console_report(result):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--uf", default="SP")
+    parser.add_argument("--uf", default="BR")
     parser.add_argument("--dias", type=int, default=30, help="Prazo futuro de propostas")
-    parser.add_argument("--paginas", type=int, default=1, help="Máximo de páginas (10 registros cada)")
+    parser.add_argument("--paginas", type=int, default=2, help="Máximo de páginas por UF (50 registros cada)")
     parser.add_argument("--saida", default="resultado-pncp.json")
     parser.add_argument("--resumo", default=None, help="Arquivo Markdown para GitHub Actions")
     args = parser.parse_args()
-    if not 1 <= args.paginas <= 10 or not 1 <= args.dias <= 90:
-        parser.error("Use paginas de 1 a 10 e dias de 1 a 90")
+    if not 1 <= args.paginas <= 100 or not 1 <= args.dias <= 90:
+        parser.error("Use paginas de 1 a 100 e dias de 1 a 90")
     deadline = (date.today() + timedelta(days=args.dias)).strftime("%Y%m%d")
     found = {}
     total_read = 0
@@ -128,42 +129,51 @@ def main():
     counts = {"direta": 0, "obra_para_prospeccao": 0, "descartada": 0}
     duplicates = 0
     pages_read = 0
-    for page in range(1, args.paginas + 1):
-        try:
-            payload = fetch({"dataFinal": deadline, "uf": args.uf, "pagina": page, "tamanhoPagina": 10})
-        except (OSError, ValueError, json.JSONDecodeError) as exc:
-            errors.append({"pagina": page, "tipo": type(exc).__name__, "mensagem": str(exc)})
-            break
-        items = payload.get("data") or []
-        pages_read += 1
-        total_read += len(items)
-        for item in items:
-            obj = item.get("objetoCompra") or ""
-            key = item.get("numeroControlePNCP")
-            if key and key in unique:
-                duplicates += 1
-                continue
-            if key:
-                unique.add(key)
-            classification = classify(item)
-            counts[classification] += 1
-            if classification == "descartada" or not key:
-                continue
-            found[key] = {
-                "numeroControlePNCP": key,
-                "classificacao_preliminar": classification,
-                "objeto": obj,
-                "orgao": (item.get("orgaoEntidade") or {}).get("razaoSocial"),
-                "municipio": (item.get("unidadeOrgao") or {}).get("municipioNome"),
-                "valor_global_estimado": item.get("valorTotalEstimado"),
-                "valor_escopo_alfa": "a verificar",
-                "data_fim_propostas": item.get("dataEncerramentoProposta"),
-                "link": item.get("linkSistemaOrigem"),
-                "observacao": "Requer leitura do edital e validação técnica/comercial."
-            }
-        if not items or page >= payload.get("totalPaginas", page):
-            break
-    result = {"fonte": BASE, "uf": args.uf, "consulta_em": date.today().isoformat(), "data_final_parametro": deadline, "registros_lidos": total_read, "registros_unicos": total_read - duplicates, "duplicados": duplicates, "paginas_consultadas": pages_read, "contagens": counts, "candidatos": list(found.values()), "erros": errors, "status": "falha" if errors and total_read == 0 else "parcial" if errors else "ok"}
+    limited_ufs = []
+    consulted_ufs = []
+    if args.uf != "BR" and args.uf not in UFS:
+        parser.error("UF invalida")
+    for uf in (UFS if args.uf == "BR" else [args.uf]):
+      consulted_ufs.append(uf)
+      for page in range(1, args.paginas + 1):
+          try:
+              payload = fetch({"dataFinal": deadline, "uf": uf, "pagina": page, "tamanhoPagina": 50})
+          except (OSError, ValueError, json.JSONDecodeError) as exc:
+              errors.append({"uf": uf, "pagina": page, "tipo": type(exc).__name__, "mensagem": str(exc)})
+              break
+          items = payload.get("data") or []
+          pages_read += 1
+          total_read += len(items)
+          for item in items:
+              obj = item.get("objetoCompra") or ""
+              key = item.get("numeroControlePNCP")
+              if key and key in unique:
+                  duplicates += 1
+                  continue
+              if key:
+                  unique.add(key)
+              classification = classify(item)
+              counts[classification] += 1
+              if classification == "descartada" or not key:
+                  continue
+              found[key] = {
+                  "uf_consultada": uf,
+                  "numeroControlePNCP": key,
+                  "classificacao_preliminar": classification,
+                  "objeto": obj,
+                  "orgao": (item.get("orgaoEntidade") or {}).get("razaoSocial"),
+                  "municipio": (item.get("unidadeOrgao") or {}).get("municipioNome"),
+                  "valor_global_estimado": item.get("valorTotalEstimado"),
+                  "valor_escopo_alfa": "a verificar",
+                  "data_fim_propostas": item.get("dataEncerramentoProposta"),
+                  "link": item.get("linkSistemaOrigem"),
+                  "observacao": "Requer leitura do edital e validação técnica/comercial."
+              }
+          if not items or page >= payload.get("totalPaginas", page):
+              break
+          if page == args.paginas:
+              limited_ufs.append(uf)
+    result = {"fonte": BASE, "uf": args.uf, "consulta_em": date.today().isoformat(), "data_final_parametro": deadline, "registros_lidos": total_read, "registros_unicos": total_read - duplicates, "duplicados": duplicates, "paginas_consultadas": pages_read, "contagens": counts, "candidatos": list(found.values()), "erros": errors, "ufs_consultadas": consulted_ufs, "ufs_limitadas": limited_ufs, "status": "falha" if errors and total_read == 0 else "parcial" if errors or limited_ufs else "ok"}
     with open(args.saida, "w", encoding="utf-8") as file:
         json.dump(result, file, ensure_ascii=False, indent=2)
     if args.resumo:
