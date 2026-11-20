@@ -64,3 +64,11 @@ Registrar aqui decisões comerciais, técnicas e operacionais relevantes. Cada e
 - **Motivo:** descobrir necessidades reais sem acusar indevidamente proprietários ou empresas.
 - **Alternativas:** inferir irregularidade de ausência de dados ou disparar campanhas sem triagem.
 - **Consequências:** documentar evidência, data e limites da consulta; avaliar conformidade de contatos e autorizar ações comerciais separadamente.
+
+## D-007 — Máquinas integradas e execução inicial fora do n8n
+- **Data:** 2026-11-20
+- **Estado:** planejamento aprovado; plataforma de produção e implementação pendentes de teste.
+- **Decisão:** documentar cinco máquinas integradas no mesmo Radar Alfa; priorizar Caçador de Construtoras em São Bernardo e piloto de Radar de Obras. Avaliar GitHub Actions/Python como primeira execução independente do n8n; Apps Script para planilhas e rascunhos; Cloudflare Workers para tarefas leves.
+- **Motivo:** obter resultados comerciais progressivos com baixo custo e reaproveitar o repositório existente.
+- **Alternativas:** aguardar o n8n, criar cinco projetos isolados ou hospedar todas as tarefas em Workers.
+- **Consequências:** usar cadastro compartilhado e controle de acesso; manter revisão humana para envio de mensagens; não colocar contatos coletados em repositório público. Ver [docs/MAQUINAS.md](MAQUINAS.md).
