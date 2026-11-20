@@ -78,3 +78,10 @@ Atualizado em 2026-11-20. Estado geral: planejamento; nenhuma coleta automática
 - [ ] Executar pela aba Actions e conferir logs e artefato.
 - [ ] Corrigir eventuais erros de parâmetros/API e avaliar candidatos reais.
 - [ ] Aprovar agendamento somente depois de piloto útil.
+
+## CP-11 — Timeout PNCP [correção gravada, reteste pendente]
+- [x] Analisar capturas: três falhas em consulta PNCP por tempo esgotado; sintaxe aprovada.
+- [x] Adicionar duas tentativas, tempo controlado, logs e arquivo JSON de diagnóstico mesmo em falha.
+- [x] Publicar artefato de diagnóstico também quando a etapa falhar.
+- [ ] Rodar novamente o workflow manual, conferir o artefato e validar resposta da API.
+- [ ] Se persistir timeout, avaliar endpoint alternativo/fonte antes de ativar qualquer agendamento.
