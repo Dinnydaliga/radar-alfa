@@ -113,3 +113,6 @@ Registrar aqui decisões comerciais, técnicas e operacionais relevantes. Cada e
 - **Decisão:** classificar diretamente apenas termos de produto/serviço específicos; para prospecção indireta exigir construção, reforma ou execução vinculada a obra/edificação; rejeitar compras rotineiras sem indicação específica de metalurgia.
 - **Alternativa:** manter termos genéricos isolados como escola, hospital, engenharia e adequação, que geram muitos falsos positivos.
 - **Limitação:** filtros heurísticos podem perder oportunidades; precisam de testes e revisão de amostras. Nenhuma integração à main ou agendamento.
+
+### Complemento de validação D-012 — 2026-11-20
+- O teste automatizado deve usar exemplos coerentes com a regra: `Reforma` isolada não comprova obra relevante, mas `Reforma de escola` indica prospecção; `Merenda escolar` deve ser descartada. Teste corrigido na branch, pendente de execução no Actions.
