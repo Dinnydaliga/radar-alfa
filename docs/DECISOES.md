@@ -97,3 +97,10 @@ Registrar aqui decisões comerciais, técnicas e operacionais relevantes. Cada e
 - **Motivo:** separar indisponibilidade da fonte de falhas locais e preservar evidências sem execuções indefinidas.
 - **Alternativa:** aumentar indiscriminadamente o timeout ou agendar sem validação.
 - **Consequência:** uma nova execução manual é necessária; não há garantia de resposta da API nem rotina diária ativa.
+
+## D-011 — Palavras-chave independentes para inox e normas
+- **Data:** 2026-11-20
+- **Estado:** diretriz aprovada para filtro do piloto; resultados ainda a validar.
+- **Decisão:** incluir buscas independentes por corrimão, guarda-corpo, aço inox, inox, aço inoxidável, ABNT, NBR 9050 e NBR 14718, preservando termos anteriores.
+- **Motivo:** capturar compras de inox mesmo sem referência a corrimão e objetos que citem normas técnicas.
+- **Limite:** ABNT genérica não comprova aderência; validar escopo, norma aplicável e edital. Filtro local sobre objetos PNCP, não busca em anexos.
