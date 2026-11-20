@@ -80,3 +80,11 @@ Registrar aqui decisões comerciais, técnicas e operacionais relevantes. Cada e
 - **Motivo:** verificar rapidamente se a fonte gera oportunidades úteis, sem depender do n8n.
 - **Alternativas:** começar por scraping de sites privados ou disparos de prospecção.
 - **Limitação:** script ainda não executado; resultados, parâmetros e campos precisam de validação. Fonte: https://pncp.gov.br/api/consulta/swagger-ui/index.html
+
+## D-009 — GitHub Actions somente manual para o primeiro teste
+- **Data:** 2026-11-20
+- **Estado:** configuração criada; execução não confirmada.
+- **Decisão:** adicionar workflow com `workflow_dispatch`, sem cron, que verifica sintaxe e executa o piloto PNCP; em sucesso, guarda resultado como artefato temporário.
+- **Motivo:** permitir teste pela interface GitHub Actions antes de ativar qualquer rotina.
+- **Alternativas:** rodar somente localmente ou ativar agendamento sem validar a API.
+- **Limites:** primeiro teste pode falhar por parâmetros da API; não há envio de e-mails nem integração n8n.
