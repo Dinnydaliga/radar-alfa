@@ -93,3 +93,7 @@ Três execuções manuais relatadas falharam em `Consultar PNCP` por `The read o
 ## Resumo de execução em teste (branch de trabalho)
 
 Na branch `feature/pncp-actions-summary-tests`, o workflow manual foi adaptado para gerar resumo Markdown no painel da execução do GitHub Actions, com totais por classificação, duplicidades, erros e candidatos. O JSON continua como artefato temporário. A consulta continua limitada a uma página de 10 registros, sem agendamento. O link de origem pode apontar para sistema externo e não equivale a link oficial do PNCP. Os testes simulados são executados antes da consulta real; validação no Actions ainda pendente.
+
+## Ajuste de relevância do piloto — 2026-11-20
+
+Execução manual `44808205837` confirmou resposta da API PNCP e geração de artefato: 2.595 registros lidos, 902 candidatos preliminares. A triagem inicial gerou falsos positivos (por exemplo, merenda escolar). Na branch de testes, o filtro passou a exigir termos metalúrgicos específicos para correspondências diretas e ação de construção/reforma associada a obra ou edificação para prospecção indireta, excluindo compras rotineiras. **Alteração ainda não retestada no Actions; não integrada à main; sem agendamento.** O piloto nacional é parcial e o valor global não representa o escopo Alfa.
