@@ -53,7 +53,7 @@ def main():
                 "valor_global_estimado": item.get("valorTotalEstimado"),
                 "valor_escopo_alfa": "a verificar",
                 "data_fim_propostas": item.get("dataEncerramentoProposta"),
-                "link": item.get("linkSistemaOrigem") or f"https://pncp.gov.br/app/editais/{key.replace('-', '/')}",
+                "link": item.get("linkSistemaOrigem"),
                 "observacao": "Requer leitura do edital e validação técnica/comercial."
             }
         if not items or page >= payload.get("totalPaginas", page):
