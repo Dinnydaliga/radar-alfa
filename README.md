@@ -63,3 +63,13 @@ Não inventar editais, valores, prazos, requisitos ou compatibilidade. Distingui
 ## Situação atual
 
 **Fase: documentação e planejamento.** Este repositório ainda não contém um radar implementado nem uma rotina diária ativa no GitHub. O próximo trabalho é mapear e testar fontes reais, antes de escrever o coletor.
+
+## Ampliação comercial: metalurgia, AVCB e infraestrutura viária
+
+Diretriz informada pela responsável: o radar deve buscar também serviços de fabricação, instalação e reforma em ferro, aço inox, alumínio e estruturas metálicas, além do catálogo tradicional. Incluir guarda-corpos rodoviários e padrão CET, passarelas, hospitais, prédios públicos, shopping centers, SESI/SENAI e reformas relacionadas a segurança e acessibilidade. Não descartar automaticamente uma oportunidade por não constar no site: investigar requisitos, escopo, preço, localização, prazo e potencial de margem, e encaminhar para avaliação comercial e técnica da Alfa. Não presumir que a Alfa esteja habilitada para todo tipo de serviço ou norma específica.
+
+**AVCB/CLCB:** estudar se consultas oficiais permitem verificar a situação documental de edificações e como identificar demandas de regularização, renovação ou adequação. Ausência de registro público **não prova** irregularidade. Não classificar empresas como infratoras sem evidência oficial inequívoca. Distinguir consulta de autenticidade, situação de licença e eventuais autos de fiscalização, que podem ter disponibilidades diferentes.
+
+**Prospecção:** avaliar apresentação institucional, vídeo, e-mail comercial e contatos profissionais de compras, respeitando privacidade, regras de comunicação e preferência dos destinatários. O radar deve apoiar o contato comercial humano, não enviar campanhas automaticamente sem aprovação.
+
+**Campos desejados por oportunidade:** fonte e data, contratante, responsável pela obra, local, fase, objeto, documentos e requisitos, valor anunciado, valor potencial para a Alfa (ou “a verificar”), prazo, evidência, contato comercial público, classificação e próximo passo.
