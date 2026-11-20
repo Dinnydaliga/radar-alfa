@@ -46,3 +46,21 @@ Registrar aqui decisões comerciais, técnicas e operacionais relevantes. Cada e
 - **Alternativas:**
 - **Consequências:**
 - **Issue/commit relacionado:**
+
+## D-005 — Busca ampliada e avaliação humana de oportunidades
+- **Data:** 2026-11-20
+- **Estado:** diretriz comercial aprovada; capacidade e habilitações por contrato sujeitas a análise.
+- **Contexto:** responsáveis pela Alfa indicaram trabalhos de metalurgia e oportunidades viárias, inclusive guarda-corpos de rodovias e padrão CET.
+- **Decisão:** procurar demandas de ferro, aço inox, alumínio e estruturas metálicas além dos produtos exibidos no site; pesquisar cada objeto, valor, prazo, especificações e potencial comercial antes de encaminhar à Alfa.
+- **Motivo:** não perder contratos rentáveis por filtros restritos de palavras-chave.
+- **Alternativa:** aceitar apenas serviços nominalmente anunciados no site.
+- **Consequência:** decisão final sobre viabilidade técnica, normas, preço e interesse pertence à Alfa; não prometer habilitação ou execução sem análise.
+
+## D-006 — AVCB e prospecção responsável
+- **Data:** 2026-11-20
+- **Estado:** pesquisa aprovada; nenhuma fonte ou automação validada ainda.
+- **Contexto:** investigar demanda por adequações e renovações relacionadas à segurança contra incêndio de edificações.
+- **Decisão:** verificar a existência e os limites de consultas oficiais de AVCB/CLCB, dados de fiscalização e fontes de obras; diferenciar ausência de informação, licença vencida e irregularidade comprovada. Estudar vídeo institucional, e-mail e canais de compras como meios de prospecção, sem disparo automático nesta fase.
+- **Motivo:** descobrir necessidades reais sem acusar indevidamente proprietários ou empresas.
+- **Alternativas:** inferir irregularidade de ausência de dados ou disparar campanhas sem triagem.
+- **Consequências:** documentar evidência, data e limites da consulta; avaliar conformidade de contatos e autorizar ações comerciais separadamente.
