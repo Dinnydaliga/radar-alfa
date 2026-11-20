@@ -12,7 +12,7 @@ import urllib.request
 from datetime import date, timedelta
 
 BASE = "https://pncp.gov.br/api/consulta/v1/contratacoes/proposta"
-DIRECT = re.compile(r"corrim[aã]o|guarda[ -]?corpo|gradil|serralheria|estrutura[s]? met[aá]lica[s]?|passarela|acessibilidade", re.I)
+DIRECT = re.compile(r"corrim[aã]o|guarda[ -]?corpo|gradil|serralheria|estrutura[s]? met[aá]lica[s]?|passarela|acessibilidade|inox|a[cç]o inoxid[aá]vel|alum[ií]nio|NBR.?9050|rota acess[ií]vel|adequa[cç][aã]o", re.I)
 INDIRECT = re.compile(r"constru[cç][aã]o|reforma|amplia[cç][aã]o|obra[s]?|engenharia|hospital|escola|pr[eé]dio", re.I)
 
 
