@@ -14,6 +14,8 @@ spec.loader.exec_module(pncp)
 
 class RadarTests(unittest.TestCase):
     def test_classification(self):
+        self.assertEqual(pncp.classify({"objetoCompra": "Peças em inox"}), "direta")
+        self.assertEqual(pncp.classify({"objetoCompra": "Adequação NBR 9050"}), "direta")
         self.assertEqual(pncp.classify({"objetoCompra": "Instalação de corrimão"}), "direta")
         self.assertEqual(pncp.classify({"objetoCompra": "Reforma de escola"}), "obra_para_prospeccao")
         self.assertEqual(pncp.classify({"objetoCompra": "Compra de papel"}), "descartada")
@@ -27,7 +29,7 @@ class RadarTests(unittest.TestCase):
                     raise error
                 return {"data": data, "totalPaginas": 1}
             with patch.object(pncp, "fetch", side_effect=fake_fetch), patch.object(
-                sys, "argv", ["pncp", "--saida", str(output), "--resumo", str(summary)]
+                sys, "argv", ["pncp", "--uf", "SP", "--saida", str(output), "--resumo", str(summary)]
             ):
                 code = pncp.main()
             return code, json.loads(output.read_text(encoding="utf-8")), summary.read_text(encoding="utf-8")
