@@ -66,7 +66,7 @@ def summarize(result, destination):
         "| --- | --- | --- | --- | --- | --- | --- |",
     ]
     def cell(value):
-        return str(value if value is not None and value != "" else "não informado").replace("|", "&#124;").replace("\\n", " ")[:250]
+        return str(value if value is not None and value != "" else "não informado").replace("|", "&#124;").replace("\n", " ")[:250]
     for c in result["candidatos"]:
         url = c.get("link")
         link = f"[Abrir]({url})" if isinstance(url, str) and url.startswith(("https://", "http://")) else "não informado"
@@ -81,7 +81,7 @@ def summarize(result, destination):
         for err in result["erros"]:
             lines.append(f"- Página {err['pagina']}: {cell(err['tipo'])} — {cell(err['mensagem'])}")
     lines.extend(["", "Classificação automática preliminar. Conferir edital, prazo e valor do escopo Alfa antes de prospectar. O link de origem não é necessariamente a página oficial PNCP."])
-    Path(destination).write_text("\\n".join(lines) + "\\n", encoding="utf-8")
+    Path(destination).write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def main():
