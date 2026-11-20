@@ -2,6 +2,14 @@
 
 Este arquivo é a trilha cronológica do projeto. Toda alteração deve ter registro verificável, inclusive correções de documentação e configurações. Usar datas no formato AAAA-MM-DD.
 
+## 2026-11-20 — Escopo metalúrgico, AVCB e infraestrutura viária
+
+- **Ação e motivo:** ampliar README e decisões para investigar obras de metalurgia, guarda-corpos rodoviários/padrão CET, AVCB e prospecção comercial.
+- **Arquivos afetados:** README.md, docs/DECISOES.md e CHANGELOG.md.
+- **Decisões:** D-005 e D-006.
+- **Verificação:** alterações documentais gravadas no GitHub; sem teste de coletor ou consulta automática.
+- **Pendências:** confirmar fontes oficiais, critérios técnicos e disponibilidade de dados; construir checklist de implementação; aprovar qualquer envio comercial antes da execução.
+
 ## 2026-11-20 — Ampliação da estratégia comercial e classificação de oportunidades
 
 - **Ação:** atualização de `README.md`, `docs/DECISOES.md` e deste histórico.
