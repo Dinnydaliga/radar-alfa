@@ -13,8 +13,44 @@ from datetime import date, timedelta
 
 BASE = "https://pncp.gov.br/api/consulta/v1/contratacoes/proposta"
 UFS = "AC AL AP AM BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RS RO RR SC SP SE TO".split()
-DIRECT = re.compile(r"corrim[aã]o|guarda[ -]?corpo|gradil|serralheria|estrutura[s]? met[aá]lica[s]?|passarela|acessibilidade|inox|a[cç]o inoxid[aá]vel|alum[ií]nio|NBR.?9050|rota acess[ií]vel|adequa[cç][aã]o", re.I)
-INDIRECT = re.compile(r"constru[cç][aã]o|reforma|amplia[cç][aã]o|obra[s]?|engenharia|hospital|escola|pr[eé]dio", re.I)
+DIRECT = re.compile(
+    r"corrim[aã]o|guarda[ -]?corpo|gradil|serralheria|"
+    r"estrutura[s]? met[aá]lica[s]?|passarela|"
+    r"\\binox\\b|a[cç]o inoxid[aá]vel|"
+    r"\\balum[ií]nio\\b|NBR.?9050|rota acess[ií]vel|"
+    r"barreira met[aá]lica|defensa met[aá]lica|"
+    r"guarda[ -]?rodas|escada met[aá]lica|"
+    r"fechamento de sacada",
+    re.I,
+)
+# Obra identificada para prospeccao: exige acao de construcao/reforma,
+# e nao apenas a mencao a uma escola, hospital, engenharia ou material.
+INDIRECT = re.compile(
+    r"\\b(?:constru[cç][aã]o|reforma|amplia[cç][aã]o|"
+    r"revitaliza[cç][aã]o|recupera[cç][aã]o|"
+    r"reabilita[cç][aã]o|adequa[cç][aã]o|"
+    r"implanta[cç][aã]o|execu[cç][aã]o)\\b"
+    r".{0,100}\\b(?:obra[s]?|edifica[cç][aã]o|"
+    r"pr[eé]dio|unidade[s]?|escola[s]?|hospital|"
+    r"ponte[s]?|viaduto[s]?|pra[cç]a[s]?|"
+    r"instala[cç][oõ]es|infraestrutura)\\b|"
+    r"\\b(?:obra[s]?|edifica[cç][aã]o|"
+    r"ponte[s]?|viaduto[s]?|infraestrutura)\\b"
+    r".{0,100}\\b(?:constru[cç][aã]o|reforma|"
+    r"amplia[cç][aã]o|recupera[cç][aã]o|"
+    r"revitaliza[cç][aã]o|execu[cç][aã]o)\\b|"
+    r"\\b(?:contrata[cç][aã]o|execu[cç][aã]o)\\b"
+    r".{0,80}\\b(?:obra[s]?|servi[cç]os de engenharia)\\b",
+    re.I,
+)
+# Evita que compras de rotina sejam classificadas como obras apenas por
+# citarem 'manutencao de instalacoes' ou 'escola'.
+ROUTINE_PURCHASE = re.compile(
+    r"merenda|g[eê]neros aliment[ií]cios|material(?:is)? de limpeza|"
+    r"material(?:is)? de expediente|material(?:is)? de consumo|"
+    r"uniforme[s]? escolar(?:es)?|alimenta[cç][aã]o escolar",
+    re.I,
+)
 
 
 def fetch(params, timeout=45, attempts=2):
@@ -43,7 +79,7 @@ def classify(item):
     obj = item.get("objetoCompra") or ""
     if DIRECT.search(obj):
         return "direta"
-    if INDIRECT.search(obj):
+    if not ROUTINE_PURCHASE.search(obj) and INDIRECT.search(obj):
         return "obra_para_prospeccao"
     return "descartada"
 
