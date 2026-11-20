@@ -2,6 +2,13 @@
 
 Este arquivo é a trilha cronológica do projeto. Toda alteração deve ter registro verificável, inclusive correções de documentação e configurações. Usar datas no formato AAAA-MM-DD.
 
+## 2026-11-20 — Ampliação de termos inox e ABNT
+
+- **Ação:** ampliar expressão de classificação direta em `scripts/pncp_piloto.py` para corrimão, guarda-corpo, aço inox, inox, aço inoxidável, ABNT, NBR 9050 e NBR 14718, independentemente, preservando termos anteriores.
+- **Motivo:** não restringir resultados a combinações com corrimão.
+- **Verificação:** alteração textual revisada; execução do GitHub Actions e qualidade dos novos resultados ainda não verificadas.
+- **Limites:** termos são aplicados aos objetos retornados pela API; ABNT isolado pode gerar falso positivo.
+
 ## 2026-11-20 — Correção do timeout PNCP
 
 - **Ação:** limitar teste a uma página; duas tentativas com timeout de 18 segundos, logs por tentativa, resposta validada e arquivo JSON com status/erros; Actions salva artefato também em falha.
