@@ -2,6 +2,13 @@
 
 Este arquivo é a trilha cronológica do projeto. Toda alteração deve ter registro verificável, inclusive correções de documentação e configurações. Usar datas no formato AAAA-MM-DD.
 
+## 2026-11-20 — Correção do timeout PNCP
+
+- **Ação:** limitar teste a uma página; duas tentativas com timeout de 18 segundos, logs por tentativa, resposta validada e arquivo JSON com status/erros; Actions salva artefato também em falha.
+- **Evidência:** capturas de três execuções com `The read operation timed out` após 25 segundos; Python e sintaxe concluídos.
+- **Testes:** revisão do código e gravação confirmada no GitHub; **a nova versão ainda não foi executada**.
+- **Pendências:** novo teste manual, avaliar qualidade dos dados e endpoint alternativo se persistir falha.
+
 ## 2026-11-20 — Workflow manual GitHub Actions
 
 - **Ação:** criado `.github/workflows/teste-pncp.yml` com execução manual, teste de sintaxe, consulta PNCP e artefato temporário de resultado; atualizados README, checkpoints e decisões.
