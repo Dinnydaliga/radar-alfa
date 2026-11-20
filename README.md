@@ -81,3 +81,7 @@ Planejadas cinco frentes integradas: Radar de Obras, Caçador de Construtoras, R
 ## Piloto executável PNCP
 
 Arquivo: `scripts/pncp_piloto.py`. Executar manualmente com `python scripts/pncp_piloto.py --uf SP --paginas 2`. Consulta propostas com prazo aberto, filtra descrições e gera `resultado-pncp.json` local, sem enviar mensagens nem agendar. **Código ainda não executado nem validado contra resposta real da API.** Não publicar resultados com dados de contato no repositório público.
+
+## Teste no GitHub Actions
+
+Workflow manual: `.github/workflows/teste-pncp.yml`. No GitHub, abrir **Actions → Teste manual Radar Alfa PNCP → Run workflow**. Ele confere a sintaxe, executa o piloto e, em caso de sucesso, disponibiliza o arquivo JSON como artefato por três dias. **Não há agendamento, envio comercial ou execução confirmada**. A primeira execução pode revelar necessidade de ajustes nos parâmetros da API PNCP.
