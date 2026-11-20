@@ -2,6 +2,13 @@
 
 Este arquivo é a trilha cronológica do projeto. Toda alteração deve ter registro verificável, inclusive correções de documentação e configurações. Usar datas no formato AAAA-MM-DD.
 
+## 2026-11-20 — Checkpoints e fontes oficiais AVCB/CET/DER
+
+- **Ação:** criação de `docs/CHECKPOINTS.md` com etapas até a automação e primeiras fontes oficiais identificadas.
+- **Evidência:** Via Fácil Bombeiros, CET e DER (links no checkpoint).
+- **Verificação:** pesquisa documental e registro no GitHub; nenhuma consulta individual por endereço nem coleta automática testada.
+- **Pendências:** validar acesso automatizado, cobertura e requisitos de cada fonte; testar protótipo.
+
 ## 2026-11-20 — Escopo metalúrgico, AVCB e infraestrutura viária
 
 - **Ação e motivo:** ampliar README e decisões para investigar obras de metalurgia, guarda-corpos rodoviários/padrão CET, AVCB e prospecção comercial.
