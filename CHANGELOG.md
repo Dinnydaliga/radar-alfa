@@ -2,6 +2,13 @@
 
 Este arquivo é a trilha cronológica do projeto. Toda alteração deve ter registro verificável, inclusive correções de documentação e configurações. Usar datas no formato AAAA-MM-DD.
 
+## 2026-11-20 — Workflow manual GitHub Actions
+
+- **Ação:** criado `.github/workflows/teste-pncp.yml` com execução manual, teste de sintaxe, consulta PNCP e artefato temporário de resultado; atualizados README, checkpoints e decisões.
+- **Motivo:** tornar o piloto visível na aba Actions, sem ativar agendamento.
+- **Teste:** configuração gravada no GitHub; execução do workflow e consulta à API ainda não confirmadas.
+- **Pendências:** rodar manualmente, conferir logs e corrigir eventuais erros.
+
 ## 2026-11-20 — Código piloto PNCP (não ativado)
 
 - **Ação:** criar `scripts/pncp_piloto.py` com consulta a propostas abertas, classificação inicial e saída JSON local; atualizar documentação e checkpoints.
