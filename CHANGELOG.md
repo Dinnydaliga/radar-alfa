@@ -79,3 +79,9 @@ Este arquivo é a trilha cronológica do projeto. Toda alteração deve ter regi
 - **Arquivos:** `scripts/pncp_piloto.py`, `.github/workflows/teste-pncp.yml`, `tests/test_pncp.py`, documentação.
 - **Validação:** alterações gravadas na branch `feature/pncp-actions-summary-tests`; execução de testes e consulta real ainda pendentes de confirmação no Actions.
 - **Limites:** uma página no piloto, sem agendamento, histórico ou envio comercial. `linkSistemaOrigem` não é necessariamente link oficial PNCP.
+
+## 2026-11-20 — Relatório legível nos logs
+
+- **Ação:** acrescentada impressão de contagens, oportunidades e erros em texto puro na etapa `Consultar PNCP`, preservando JSON e Job Summary.
+- **Escopo:** apenas branch `feature/pncp-actions-summary-tests`; sem alterações na `main`, agendamento ou ampliação de páginas.
+- **Validação:** código gravado; nova execução manual ainda pendente.
