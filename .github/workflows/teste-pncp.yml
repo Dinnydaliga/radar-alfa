@@ -1,0 +1,30 @@
+name: Teste manual Radar Alfa PNCP
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  teste-pncp:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Obter codigo
+        uses: actions/checkout@v4
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Conferir sintaxe
+        run: python -m py_compile scripts/pncp_piloto.py
+      - name: Consultar PNCP
+        run: python scripts/pncp_piloto.py --uf SP --paginas 2 --saida resultado-pncp.json
+      - name: Salvar resultado para analise
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: resultado-pncp-piloto
+          path: resultado-pncp.json
+          retention-days: 3
