@@ -84,6 +84,32 @@ def summarize(result, destination):
     Path(destination).write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
+def print_console_report(result):
+    """Relatório em texto puro, legível nos logs da etapa Consultar PNCP."""
+    counts = result["contagens"]
+    print("\\n===== RADAR ALFA PNCP — RESULTADO =====")
+    print(f"Status: {result['status']} | UF: {result['uf']} | Data: {result['consulta_em']}")
+    print(f"Registros lidos: {result['registros_lidos']} | Únicos: {result['registros_unicos']} | Duplicados: {result['duplicados']}")
+    print(f"Diretas: {counts['direta']} | Indiretas: {counts['obra_para_prospeccao']} | Descartadas: {counts['descartada']}")
+    print(f"Páginas consultadas: {result['paginas_consultadas']} | Erros: {len(result['erros'])}")
+    print("Cobertura: piloto limitado; não representa todo o Estado de SP.")
+    for index, item in enumerate(result["candidatos"], 1):
+        print(f"\\nOPORTUNIDADE {index} — {item['classificacao_preliminar']}")
+        for label, key in [
+            ("PNCP ID", "numeroControlePNCP"), ("Órgão", "orgao"),
+            ("Município", "municipio"), ("Objeto", "objeto"),
+            ("Valor global", "valor_global_estimado"), ("Prazo", "data_fim_propostas"),
+            ("Link de origem (não necessariamente PNCP)", "link")
+        ]:
+            print(f"{label}: {item.get(key) if item.get(key) is not None else 'não informado'}")
+    if not result["candidatos"]:
+        print("Nenhuma oportunidade preliminar encontrada nos registros consultados.")
+    for err in result["erros"]:
+        print(f"ERRO página {err['pagina']}: {err['tipo']} — {err['mensagem']}")
+    print("Resultados preliminares; validar edital e valor do escopo Alfa.")
+    print("===== FIM DO RELATÓRIO =====\\n", flush=True)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--uf", default="SP")
@@ -142,6 +168,7 @@ def main():
         json.dump(result, file, ensure_ascii=False, indent=2)
     if args.resumo:
         summarize(result, args.resumo)
+    print_console_report(result)
     print(f"Registros lidos: {total_read}; candidatos preliminares: {len(found)}; arquivo: {args.saida}")
     return 1 if errors else 0
 
