@@ -17,13 +17,13 @@ DIRECT = re.compile(r"corrim[aã]o|guarda[ -]?corpo|gradil|serralheria|estrutura
 INDIRECT = re.compile(r"constru[cç][aã]o|reforma|amplia[cç][aã]o|obra[s]?|engenharia|hospital|escola|pr[eé]dio", re.I)
 
 
-def fetch(params, timeout=18, attempts=2):
+def fetch(params, timeout=45, attempts=2):
     url = BASE + "?" + urllib.parse.urlencode(params)
     request = urllib.request.Request(url, headers={"Accept": "application/json", "User-Agent": "radar-alfa-piloto/0.2"})
     for attempt in range(1, attempts + 1):
         start = time.monotonic()
         try:
-            print(f"PNCP: pagina {params['pagina']}, tentativa {attempt}/{attempts}, timeout {timeout}s", flush=True)
+            print(f"PNCP: UF {params.get('uf', 'BR')}, pagina {params['pagina']}, tentativa {attempt}/{attempts}, timeout {timeout}s", flush=True)
             with urllib.request.urlopen(request, timeout=timeout) as response:
                 payload = json.load(response)
             if not isinstance(payload, dict) or not isinstance(payload.get("data"), list):
@@ -80,7 +80,7 @@ def summarize(result, destination):
     if result["erros"]:
         lines.extend(["", "## Erros"])
         for err in result["erros"]:
-            lines.append(f"- Página {err['pagina']}: {cell(err['tipo'])} — {cell(err['mensagem'])}")
+            lines.append(f"- UF {err.get('uf', '?')}, página {err['pagina']}: {cell(err['tipo'])} — {cell(err['mensagem'])}")
     lines.extend(["", "Classificação automática preliminar. Conferir edital, prazo e valor do escopo Alfa antes de prospectar. O link de origem não é necessariamente a página oficial PNCP."])
     Path(destination).write_text("\n".join(lines) + "\n", encoding="utf-8")
 
@@ -106,7 +106,7 @@ def print_console_report(result):
     if not result["candidatos"]:
         print("Nenhuma oportunidade preliminar encontrada nos registros consultados.")
     for err in result["erros"]:
-        print(f"ERRO página {err['pagina']}: {err['tipo']} — {err['mensagem']}")
+        print(f"ERRO UF {err.get('uf', '?')}, página {err['pagina']}: {err['tipo']} — {err['mensagem']}")
     print("Resultados preliminares; validar edital e valor do escopo Alfa.")
     print("===== FIM DO RELATÓRIO =====\\n", flush=True)
 
@@ -180,7 +180,7 @@ def main():
         summarize(result, args.resumo)
     print_console_report(result)
     print(f"Registros lidos: {total_read}; candidatos preliminares: {len(found)}; arquivo: {args.saida}")
-    return 1 if errors else 0
+    return 1 if errors and total_read == 0 else 0
 
 
 if __name__ == "__main__":
