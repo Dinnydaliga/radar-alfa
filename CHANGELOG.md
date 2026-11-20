@@ -2,6 +2,14 @@
 
 Este arquivo é a trilha cronológica do projeto. Toda alteração deve ter registro verificável, inclusive correções de documentação e configurações. Usar datas no formato AAAA-MM-DD.
 
+## 2026-11-20 — Cinco máquinas e opções de execução gratuita
+
+- **Ação:** criar `docs/MAQUINAS.md`; atualizar README, decisões D-007 e checkpoints CP-08.
+- **Motivo:** priorizar captação de construtoras de São Bernardo e coletor de obras sem depender do n8n.
+- **Pesquisa:** documentação oficial GitHub Actions, Google Apps Script e Cloudflare Workers, com links em MAQUINAS.md.
+- **Verificação:** gravação documental no GitHub; nenhuma máquina executada, nenhum lead coletado e nenhum e-mail enviado.
+- **Pendências:** validar fontes e armazenamento, implementar pilotos, testar e autorizar ativações.
+
 ## 2026-11-20 — Checkpoints e fontes oficiais AVCB/CET/DER
 
 - **Ação:** criação de `docs/CHECKPOINTS.md` com etapas até a automação e primeiras fontes oficiais identificadas.
