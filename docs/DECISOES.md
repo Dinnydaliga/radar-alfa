@@ -88,3 +88,12 @@ Registrar aqui decisões comerciais, técnicas e operacionais relevantes. Cada e
 - **Motivo:** permitir teste pela interface GitHub Actions antes de ativar qualquer rotina.
 - **Alternativas:** rodar somente localmente ou ativar agendamento sem validar a API.
 - **Limites:** primeiro teste pode falhar por parâmetros da API; não há envio de e-mails nem integração n8n.
+
+## D-010 — Diagnóstico e repetição limitada da API PNCP
+- **Data:** 2026-11-20
+- **Estado:** correção implementada; validação de execução pendente.
+- **Contexto:** três tentativas manuais reportaram timeout na consulta PNCP, com Python e sintaxe aprovados.
+- **Decisão:** reduzir piloto a uma página, usar timeout de 18 segundos e no máximo duas tentativas com espera curta; salvar diagnóstico JSON e artefato mesmo se a consulta falhar.
+- **Motivo:** separar indisponibilidade da fonte de falhas locais e preservar evidências sem execuções indefinidas.
+- **Alternativa:** aumentar indiscriminadamente o timeout ou agendar sem validação.
+- **Consequência:** uma nova execução manual é necessária; não há garantia de resposta da API nem rotina diária ativa.
