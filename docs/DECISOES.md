@@ -97,3 +97,11 @@ Registrar aqui decisões comerciais, técnicas e operacionais relevantes. Cada e
 - **Motivo:** separar indisponibilidade da fonte de falhas locais e preservar evidências sem execuções indefinidas.
 - **Alternativa:** aumentar indiscriminadamente o timeout ou agendar sem validação.
 - **Consequência:** uma nova execução manual é necessária; não há garantia de resposta da API nem rotina diária ativa.
+
+## D-011 — Resumo no Actions e testes sem ampliar a coleta
+- **Data:** 2026-11-20
+- **Estado:** implementação em branch para validação, sem integração à main.
+- **Decisão:** preservar a consulta manual de uma página e os filtros comerciais existentes; contar descartadas e duplicidades, exibir resumo no Actions e testar com respostas simuladas.
+- **Motivo:** leitura pelo celular sem ZIP e diagnóstico claro de erros.
+- **Alternativas:** depender de artefatos temporários ou ampliar a paginação antes da validação.
+- **Consequência:** cobertura ainda parcial; conferir execução real e revisar resultados antes de merge.
