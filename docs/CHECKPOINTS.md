@@ -66,3 +66,9 @@ Atualizado em 2026-11-20. Estado geral: planejamento; nenhuma coleta automática
 - [ ] Testar primeiro coletor oficial de obras em Python.
 - [ ] Definir armazenamento privado dos leads, deduplicação e fluxo de revisão comercial.
 - [ ] Aprovar e implementar cada fluxo, com testes e registro; ativar n8n apenas quando fizer sentido.
+
+## CP-09 — Piloto PNCP [código criado, teste pendente]
+- [x] Criar script de consulta pública PNCP com limite de páginas e filtro inicial.
+- [ ] Executar contra API real, verificar campos, paginação, erros e qualidade das oportunidades.
+- [ ] Ajustar palavras-chave e revisar exemplos reais com a Alfa.
+- [ ] Decidir armazenamento, logs e agendamento somente após testes.
