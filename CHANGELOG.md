@@ -92,3 +92,10 @@ Este arquivo é a trilha cronológica do projeto. Toda alteração deve ter regi
 - **Ação:** refinado `scripts/pncp_piloto.py` na branch `feature/pncp-actions-summary-tests`, removendo palavras genéricas isoladas do filtro e exigindo contexto de obra para prospecção indireta; atualizados README e decisão D-012.
 - **Testes:** revisão do código e confirmação de gravação; **novo teste automatizado e execução real após a correção ainda não realizados**.
 - **Pendências:** executar testes, repetir workflow manual, comparar contagens e falsos positivos; não mesclar à main sem validação.
+
+## 2026-11-20 — Correção do teste de classificação após refinamento
+
+- **Evidência:** captura do Actions às 17h20: sintaxe Python passou, mas `Conferir sintaxe` falhou na execução dos testes, antes da consulta PNCP.
+- **Causa identificada no código:** teste antigo esperava classificar `Reforma` isolada como obra, embora o filtro novo exija contexto; não havia sincronização do teste com a regra.
+- **Ação:** atualizar caso B para `Reforma de escola` e adicionar verificações negativas para `Reforma` isolada e `Merenda escolar`.
+- **Limite:** a captura não mostra o traceback completo; causa compatível com o código, ainda não confirmada por execução do Actions. Novo teste pendente.
