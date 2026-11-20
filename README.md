@@ -85,3 +85,7 @@ Arquivo: `scripts/pncp_piloto.py`. Executar manualmente com `python scripts/pncp
 ## Teste no GitHub Actions
 
 Workflow manual: `.github/workflows/teste-pncp.yml`. No GitHub, abrir **Actions → Teste manual Radar Alfa PNCP → Run workflow**. Ele confere a sintaxe, executa o piloto e, em caso de sucesso, disponibiliza o arquivo JSON como artefato por três dias. **Não há agendamento, envio comercial ou execução confirmada**. A primeira execução pode revelar necessidade de ajustes nos parâmetros da API PNCP.
+
+## Diagnóstico PNCP — 2026-11-20
+
+Três execuções manuais relatadas falharam em `Consultar PNCP` por `The read operation timed out` após 25 segundos; configuração e sintaxe passaram. O piloto agora limita o teste a **uma página**, tenta novamente uma vez em erros transitórios, registra tempo e tipo de erro e grava `resultado-pncp.json` mesmo se falhar. O workflow publica o artefato também em caso de falha. **Correção gravada, mas ainda não executada**; endpoint e disponibilidade da API permanecem sujeitos à validação real. Sem agendamento.
