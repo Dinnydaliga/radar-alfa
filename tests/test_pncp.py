@@ -19,6 +19,8 @@ class RadarTests(unittest.TestCase):
         self.assertEqual(pncp.classify({"objetoCompra": "Instalação de corrimão"}), "direta")
         self.assertEqual(pncp.classify({"objetoCompra": "Reforma de escola"}), "obra_para_prospeccao")
         self.assertEqual(pncp.classify({"objetoCompra": "Compra de papel"}), "descartada")
+        self.assertEqual(pncp.classify({"objetoCompra": "Reforma"}), "descartada")
+        self.assertEqual(pncp.classify({"objetoCompra": "Merenda escolar"}), "descartada")
 
     def run_case(self, data, error=None):
         with tempfile.TemporaryDirectory() as tmp:
@@ -38,7 +40,7 @@ class RadarTests(unittest.TestCase):
         items = [
             {"numeroControlePNCP": "A", "objetoCompra": "Corrimão"},
             {"numeroControlePNCP": "A", "objetoCompra": "Corrimão"},
-            {"numeroControlePNCP": "B", "objetoCompra": "Reforma"},
+            {"numeroControlePNCP": "B", "objetoCompra": "Reforma de escola"},
             {"numeroControlePNCP": "C", "objetoCompra": "Papel"},
         ]
         code, result, summary = self.run_case(items)
