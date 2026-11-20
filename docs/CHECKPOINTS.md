@@ -72,3 +72,9 @@ Atualizado em 2026-11-20. Estado geral: planejamento; nenhuma coleta automática
 - [ ] Executar contra API real, verificar campos, paginação, erros e qualidade das oportunidades.
 - [ ] Ajustar palavras-chave e revisar exemplos reais com a Alfa.
 - [ ] Decidir armazenamento, logs e agendamento somente após testes.
+
+## CP-10 — GitHub Actions manual [configurado; teste pendente]
+- [x] Criar `.github/workflows/teste-pncp.yml` com acionamento exclusivamente manual.
+- [ ] Executar pela aba Actions e conferir logs e artefato.
+- [ ] Corrigir eventuais erros de parâmetros/API e avaliar candidatos reais.
+- [ ] Aprovar agendamento somente depois de piloto útil.
