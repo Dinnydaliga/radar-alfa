@@ -72,3 +72,11 @@ Registrar aqui decisões comerciais, técnicas e operacionais relevantes. Cada e
 - **Motivo:** obter resultados comerciais progressivos com baixo custo e reaproveitar o repositório existente.
 - **Alternativas:** aguardar o n8n, criar cinco projetos isolados ou hospedar todas as tarefas em Workers.
 - **Consequências:** usar cadastro compartilhado e controle de acesso; manter revisão humana para envio de mensagens; não colocar contatos coletados em repositório público. Ver [docs/MAQUINAS.md](MAQUINAS.md).
+
+## D-008 — Piloto manual PNCP antes de agendamento
+- **Data:** 2026-11-20
+- **Estado:** piloto de código criado; ativação não aprovada.
+- **Decisão:** usar endpoint oficial `/v1/contratacoes/proposta` para buscar propostas abertas em SP; classificar objeto em aderência direta ou obra para prospecção. Limitar páginas, não enviar mensagens e não criar workflow agendado antes de teste real.
+- **Motivo:** verificar rapidamente se a fonte gera oportunidades úteis, sem depender do n8n.
+- **Alternativas:** começar por scraping de sites privados ou disparos de prospecção.
+- **Limitação:** script ainda não executado; resultados, parâmetros e campos precisam de validação. Fonte: https://pncp.gov.br/api/consulta/swagger-ui/index.html
