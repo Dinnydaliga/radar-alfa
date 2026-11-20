@@ -73,3 +73,7 @@ Diretriz informada pela responsável: o radar deve buscar também serviços de f
 **Prospecção:** avaliar apresentação institucional, vídeo, e-mail comercial e contatos profissionais de compras, respeitando privacidade, regras de comunicação e preferência dos destinatários. O radar deve apoiar o contato comercial humano, não enviar campanhas automaticamente sem aprovação.
 
 **Campos desejados por oportunidade:** fonte e data, contratante, responsável pela obra, local, fase, objeto, documentos e requisitos, valor anunciado, valor potencial para a Alfa (ou “a verificar”), prazo, evidência, contato comercial público, classificação e próximo passo.
+
+## Máquinas de captação e execução incremental
+
+Planejadas cinco frentes integradas: Radar de Obras, Caçador de Construtoras, Radar AVCB, Prospecção Comercial e Gestor de Leads. O objetivo é gerar clientes empresariais e contratos lucrativos; começar com piloto de construtoras de São Bernardo e um coletor oficial de obras, sem esperar pelo n8n. Consultar [docs/MAQUINAS.md](docs/MAQUINAS.md) para responsabilidades, prioridades, opções gratuitas e limites. **Nenhuma máquina está ativa.** Dados de leads e contatos não devem ser publicados no repositório público.
