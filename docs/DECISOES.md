@@ -26,6 +26,15 @@ Registrar aqui decisões comerciais, técnicas e operacionais relevantes. Cada e
 - **Alternativas a comparar:** Cloudflare Workers, Google Apps Script e ferramentas autohospedadas.
 - **Próximo passo:** validar fontes e limites técnicos antes de decidir.
 
+## D-004 — Referência comercial e descoberta antecipada de obras
+- **Data:** 2026-11-20
+- **Estado:** diretriz aprovada para o planejamento; integrações ainda não implementadas.
+- **Contexto:** a Alfa mantém uma página de vendas específica para anúncios e um site com corrimãos, guarda-corpos, vidro temperado e acessibilidade. O conteúdo do site está sujeito a alterações.
+- **Decisão:** usar https://alfacorrimao.com.br/corrimaos-para-predios/ como referência comercial prioritária, complementada pelo site; monitorar licitações e obras privadas, inclusive antes de surgirem pedidos específicos de corrimãos.
+- **Motivo:** ampliar a descoberta de contratos compatíveis com o portfólio e o piso comercial.
+- **Alternativas:** restringir a busca a editais com a palavra “corrimão” ou somente a licitações públicas.
+- **Consequências:** distinguir (a) contratação aberta confirmada, (b) obra para prospecção e (c) acompanhamento. Verificar o valor do escopo da Alfa; não usar automaticamente o valor total da obra. Validar diretamente o conteúdo da página e a capacidade operacional antes de fixar palavras-chave definitivas.
+
 ## Modelo de decisão
 
 ### D-XXX — Título
