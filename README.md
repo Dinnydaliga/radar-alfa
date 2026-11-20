@@ -4,25 +4,29 @@ Projeto de inteligência comercial para identificar e acompanhar oportunidades d
 
 ## Objetivo e perfil comercial
 
-Buscar contratos em licitações públicas e obras privadas. A prioridade são serviços de médio e grande porte, com **valor comercial para a Alfa em torno de R$ 60.000 ou mais**. O valor global da obra não substitui o valor potencial dos produtos e serviços da Alfa. Oportunidades próximas ao piso podem ser avaliadas.
+Buscar contratos em licitações públicas **e** obras privadas, incluindo prospecção antecipada de empreendimentos. A prioridade são serviços de médio e grande porte, com **valor comercial para a Alfa em torno de R$ 60.000 ou mais**. O valor global da obra não substitui o valor potencial dos produtos e serviços da Alfa. Oportunidades próximas ao piso podem ser avaliadas.
 
-Produtos prioritários: corrimãos duplos de parede em alumínio, em duas alturas, e soluções de acessibilidade em aço inox para rampas. Também avaliar guarda-corpos, fechamentos de sacadas, vidros e outros produtos ou serviços **desde que a capacidade de execução da Alfa seja confirmada**.
+Produtos prioritários: corrimãos duplos de parede em alumínio, em duas alturas, e soluções de acessibilidade em aço inox para rampas. Também avaliar guarda-corpos, fechamentos de sacadas, vidro temperado e outros produtos ou serviços **desde que a capacidade de execução da Alfa seja confirmada**.
+
+A referência comercial principal é a página de vendas [Corrimãos para prédios](https://alfacorrimao.com.br/corrimaos-para-predios/). Complementar com as páginas de produtos do [site da Alfa Corrimão](https://alfacorrimao.com.br/). **O site está em ajustes:** não presumir que fotos, textos, portfólio ou condições comerciais sejam definitivos. A página comercial foi informada pela responsável; seu conteúdo integral ainda precisa ser validado diretamente antes de extrair termos específicos dela.
 
 Quando o valor específico do escopo da Alfa não estiver disponível, registrar **valor a verificar**, sem inventar estimativas.
 
 ## Fontes a validar
 
-- Licitações públicas: PNCP, Compras.gov.br e portais estaduais e municipais.
-- Mercado privado: construtoras, incorporadoras, obras em andamento e fontes públicas de projetos e contratações.
+- **Licitações públicas:** PNCP, Compras.gov.br e portais estaduais e municipais.
+- **Mercado privado:** construtoras, incorporadoras, empreendimentos em construção, anúncios de obras, fontes públicas de projetos e contratações, e canais de compras de empresas.
+
+Buscar tanto contratações específicas dos produtos quanto obras maiores que possam precisar deles no futuro. Não confundir **licitação ou contratação aberta e confirmada**, **obra identificada para prospecção** e **oportunidade em acompanhamento**. Uma obra em andamento não prova que a compra dos produtos está aberta.
 
 A inclusão de uma fonte na lista não significa que sua integração já funciona. Validar acesso, confiabilidade, cobertura e termos de uso antes de automatizar.
 
 ## Funcionamento planejado
 
-1. Coletar oportunidades diariamente.
+1. Coletar oportunidades diariamente em fontes públicas e privadas validadas.
 2. Normalizar dados e eliminar duplicações.
-3. Classificar por aderência ao portfólio, valor potencial, localização, prazo e estágio.
-4. Guardar evidências, links e histórico de mudanças.
+3. Classificar por aderência ao portfólio, valor potencial para a Alfa, localização, prazo e estágio.
+4. Separar oportunidades confirmadas, prospecções e acompanhamentos; guardar evidências, links e histórico de mudanças.
 5. Enviar alertas objetivos por Telegram e permitir execução manual.
 
 Tecnologias **propostas, não implementadas**: Python e GitHub Actions; integrações futuras possíveis com n8n e Hermes. Credenciais devem ficar em GitHub Secrets ou mecanismo equivalente, nunca no código ou na documentação.
