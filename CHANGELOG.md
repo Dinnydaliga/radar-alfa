@@ -85,3 +85,10 @@ Este arquivo é a trilha cronológica do projeto. Toda alteração deve ter regi
 - **Ação:** acrescentada impressão de contagens, oportunidades e erros em texto puro na etapa `Consultar PNCP`, preservando JSON e Job Summary.
 - **Escopo:** apenas branch `feature/pncp-actions-summary-tests`; sem alterações na `main`, agendamento ou ampliação de páginas.
 - **Validação:** código gravado; nova execução manual ainda pendente.
+
+## 2026-11-20 — Ajuste de relevância após execução real
+
+- **Evidência:** GitHub Actions `44808205837`, job `136537643412`: consulta concluída, 2.595 registros, 902 candidatos e artefato JSON criado; amostra incluiu merenda escolar indevidamente.
+- **Ação:** refinado `scripts/pncp_piloto.py` na branch `feature/pncp-actions-summary-tests`, removendo palavras genéricas isoladas do filtro e exigindo contexto de obra para prospecção indireta; atualizados README e decisão D-012.
+- **Testes:** revisão do código e confirmação de gravação; **novo teste automatizado e execução real após a correção ainda não realizados**.
+- **Pendências:** executar testes, repetir workflow manual, comparar contagens e falsos positivos; não mesclar à main sem validação.
