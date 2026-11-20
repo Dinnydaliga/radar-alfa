@@ -38,12 +38,59 @@ def fetch(params, timeout=18, attempts=2):
             time.sleep(2 * attempt)
 
 
+def classify(item):
+    obj = item.get("objetoCompra") or ""
+    if DIRECT.search(obj):
+        return "direta"
+    if INDIRECT.search(obj):
+        return "obra_para_prospeccao"
+    return "descartada"
+
+
+def summarize(result, destination):
+    """Resumo legível no GitHub Actions; não depende do artefato."""
+    from pathlib import Path
+    from datetime import datetime, timezone
+    counts = result["contagens"]
+    lines = [
+        "# Radar Alfa — consulta PNCP",
+        f"- Situação: **{result['status']}**",
+        f"- UF: {result['uf']} | Consulta: {result['consulta_em']} | Prazo final pesquisado: {result['data_final_parametro']}",
+        "- Cobertura: **parcial / piloto limitado**; não representa todas as licitações de SP.",
+        f"- Registros lidos: **{result['registros_lidos']}**; únicos: **{result['registros_unicos']}**; duplicados: **{result['duplicados']}**",
+        f"- Diretas: **{counts['direta']}**; indiretas: **{counts['obra_para_prospeccao']}**; descartadas: **{counts['descartada']}**",
+        f"- Páginas consultadas: **{result['paginas_consultadas']}**; erros: **{len(result['erros'])}**",
+        "",
+        "## Oportunidades preliminares",
+        "| Tipo | Órgão | Município | Objeto | Valor global | Prazo | Link fornecido pela origem |",
+        "| --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    def cell(value):
+        return str(value if value is not None and value != "" else "não informado").replace("|", "&#124;").replace("\\n", " ")[:250]
+    for c in result["candidatos"]:
+        url = c.get("link")
+        link = f"[Abrir]({url})" if isinstance(url, str) and url.startswith(("https://", "http://")) else "não informado"
+        lines.append("| " + " | ".join([
+            cell(c["classificacao_preliminar"]), cell(c["orgao"]), cell(c["municipio"]),
+            cell(c["objeto"]), cell(c["valor_global_estimado"]), cell(c["data_fim_propostas"]), link,
+        ]) + " |")
+    if not result["candidatos"]:
+        lines.append("| Nenhuma oportunidade preliminar | — | — | — | — | — | — |")
+    if result["erros"]:
+        lines.extend(["", "## Erros"])
+        for err in result["erros"]:
+            lines.append(f"- Página {err['pagina']}: {cell(err['tipo'])} — {cell(err['mensagem'])}")
+    lines.extend(["", "Classificação automática preliminar. Conferir edital, prazo e valor do escopo Alfa antes de prospectar. O link de origem não é necessariamente a página oficial PNCP."])
+    Path(destination).write_text("\\n".join(lines) + "\\n", encoding="utf-8")
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--uf", default="SP")
     parser.add_argument("--dias", type=int, default=30, help="Prazo futuro de propostas")
     parser.add_argument("--paginas", type=int, default=1, help="Máximo de páginas (10 registros cada)")
     parser.add_argument("--saida", default="resultado-pncp.json")
+    parser.add_argument("--resumo", default=None, help="Arquivo Markdown para GitHub Actions")
     args = parser.parse_args()
     if not 1 <= args.paginas <= 10 or not 1 <= args.dias <= 90:
         parser.error("Use paginas de 1 a 10 e dias de 1 a 90")
@@ -51,6 +98,10 @@ def main():
     found = {}
     total_read = 0
     errors = []
+    unique = set()
+    counts = {"direta": 0, "obra_para_prospeccao": 0, "descartada": 0}
+    duplicates = 0
+    pages_read = 0
     for page in range(1, args.paginas + 1):
         try:
             payload = fetch({"dataFinal": deadline, "uf": args.uf, "pagina": page, "tamanhoPagina": 10})
@@ -58,14 +109,19 @@ def main():
             errors.append({"pagina": page, "tipo": type(exc).__name__, "mensagem": str(exc)})
             break
         items = payload.get("data") or []
+        pages_read += 1
         total_read += len(items)
         for item in items:
             obj = item.get("objetoCompra") or ""
-            classification = "direta" if DIRECT.search(obj) else "obra_para_prospeccao" if INDIRECT.search(obj) else None
-            if not classification:
-                continue
             key = item.get("numeroControlePNCP")
-            if not key:
+            if key and key in unique:
+                duplicates += 1
+                continue
+            if key:
+                unique.add(key)
+            classification = classify(item)
+            counts[classification] += 1
+            if classification == "descartada" or not key:
                 continue
             found[key] = {
                 "numeroControlePNCP": key,
@@ -81,9 +137,11 @@ def main():
             }
         if not items or page >= payload.get("totalPaginas", page):
             break
-    result = {"fonte": BASE, "uf": args.uf, "consulta_em": date.today().isoformat(), "registros_lidos": total_read, "candidatos": list(found.values()), "erros": errors, "status": "falha" if errors and total_read == 0 else "parcial" if errors else "ok"}
+    result = {"fonte": BASE, "uf": args.uf, "consulta_em": date.today().isoformat(), "data_final_parametro": deadline, "registros_lidos": total_read, "registros_unicos": total_read - duplicates, "duplicados": duplicates, "paginas_consultadas": pages_read, "contagens": counts, "candidatos": list(found.values()), "erros": errors, "status": "falha" if errors and total_read == 0 else "parcial" if errors else "ok"}
     with open(args.saida, "w", encoding="utf-8") as file:
         json.dump(result, file, ensure_ascii=False, indent=2)
+    if args.resumo:
+        summarize(result, args.resumo)
     print(f"Registros lidos: {total_read}; candidatos preliminares: {len(found)}; arquivo: {args.saida}")
     return 1 if errors else 0
 
