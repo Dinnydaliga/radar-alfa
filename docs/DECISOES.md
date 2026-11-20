@@ -105,3 +105,11 @@ Registrar aqui decisões comerciais, técnicas e operacionais relevantes. Cada e
 - **Motivo:** leitura pelo celular sem ZIP e diagnóstico claro de erros.
 - **Alternativas:** depender de artefatos temporários ou ampliar a paginação antes da validação.
 - **Consequência:** cobertura ainda parcial; conferir execução real e revisar resultados antes de merge.
+
+## D-012 — Redução de falsos positivos do piloto PNCP
+- **Data:** 2026-11-20
+- **Estado:** implementada na branch de testes; validação pendente.
+- **Evidência:** execução `44808205837` leu 2.595 registros e gerou 902 candidatos, incluindo merenda escolar sem relação com metalurgia.
+- **Decisão:** classificar diretamente apenas termos de produto/serviço específicos; para prospecção indireta exigir construção, reforma ou execução vinculada a obra/edificação; rejeitar compras rotineiras sem indicação específica de metalurgia.
+- **Alternativa:** manter termos genéricos isolados como escola, hospital, engenharia e adequação, que geram muitos falsos positivos.
+- **Limitação:** filtros heurísticos podem perder oportunidades; precisam de testes e revisão de amostras. Nenhuma integração à main ou agendamento.
