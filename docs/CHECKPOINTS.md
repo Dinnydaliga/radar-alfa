@@ -58,3 +58,11 @@ Atualizado em 2026-11-20. Estado geral: planejamento; nenhuma coleta automática
 - DER exemplo histórico de recuperação de passarela SP-304: https://www.der.sp.gov.br/Website/Arquivos/dengen/concorrencia902422025.pdf
 
 **Limites:** não foi verificada a automação das consultas, nem demonstrada base completa de imóveis irregulares. Documentos e exemplos não comprovam que uma contratação esteja aberta em 2026-11-20.
+
+## CP-08 — Máquinas de captação [planejado]
+- [x] Definir as cinco máquinas e prioridade comercial inicial (ver [MAQUINAS.md](MAQUINAS.md)).
+- [x] Comparar preliminarmente GitHub Actions, Apps Script e Cloudflare Workers por documentação oficial.
+- [ ] Testar piloto do Caçador de Construtoras em São Bernardo, com evidências de contatos públicos.
+- [ ] Testar primeiro coletor oficial de obras em Python.
+- [ ] Definir armazenamento privado dos leads, deduplicação e fluxo de revisão comercial.
+- [ ] Aprovar e implementar cada fluxo, com testes e registro; ativar n8n apenas quando fizer sentido.
