@@ -89,3 +89,7 @@ Workflow manual: `.github/workflows/teste-pncp.yml`. No GitHub, abrir **Actions 
 ## Diagnóstico PNCP — 2026-11-20
 
 Três execuções manuais relatadas falharam em `Consultar PNCP` por `The read operation timed out` após 25 segundos; configuração e sintaxe passaram. O piloto agora limita o teste a **uma página**, tenta novamente uma vez em erros transitórios, registra tempo e tipo de erro e grava `resultado-pncp.json` mesmo se falhar. O workflow publica o artefato também em caso de falha. **Correção gravada, mas ainda não executada**; endpoint e disponibilidade da API permanecem sujeitos à validação real. Sem agendamento.
+
+## Palavras-chave ampliadas — 2026-11-20
+
+O filtro direto do piloto PNCP considera isoladamente `corrimão`, `guarda-corpo`, `aço inox`, `aço inoxidável`, `inox`, `ABNT`, `NBR 9050` e `NBR 14718`, além dos termos anteriores. Não exige combinação como “corrimão de aço inox”. Menção genérica a ABNT pode gerar falsos positivos: classificação é preliminar e exige triagem humana. O PNCP é consultado por propostas e os termos são aplicados localmente aos objetos retornados; não se trata de pesquisa textual completa em todos os editais/anexos.
