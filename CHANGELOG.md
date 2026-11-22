@@ -2,6 +2,13 @@
 
 Este arquivo é a trilha cronológica do projeto. Toda alteração deve ter registro verificável, inclusive correções de documentação e configurações. Usar datas no formato AAAA-MM-DD.
 
+## 2026-11-22 — Auditoria documental de organização
+
+- **Ação:** criado `docs/AUDITORIA-ORGANIZACAO-2026-11-22.md` com diagnóstico e propostas de simplificação do README e controle de status.
+- **Motivo:** manter separação entre planejamento, implementação, validação e operação; evitar confundir piloto com radar ativo.
+- **Verificação:** README e CHANGELOG consultados; arquivo de auditoria gravado no GitHub. Sem execução de código ou workflows.
+- **Pendências:** aprovar reorganização documental e validar novamente o piloto PNCP antes de ativar qualquer rotina.
+
 ## 2026-11-20 — Ampliação de termos inox e ABNT
 
 - **Ação:** ampliar expressão de classificação direta em `scripts/pncp_piloto.py` para corrimão, guarda-corpo, aço inox, inox, aço inoxidável, ABNT, NBR 9050 e NBR 14718, independentemente, preservando termos anteriores.
